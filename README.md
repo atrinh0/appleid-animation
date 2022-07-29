@@ -1,4 +1,4 @@
-# AppleID Animation
+# Apple ID Animation
 
 Recreating the animation on https://appleid.apple.com using SwiftUI.
 
