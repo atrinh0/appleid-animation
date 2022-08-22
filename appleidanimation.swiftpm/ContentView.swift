@@ -22,14 +22,26 @@ struct ContentView: View {
                 .mask {
                     ZStack {
                         AnimatedDots(delay: 0)
-                        AnimatedDots(delay: 0.25)
+                        AnimatedDots(delay: 0.2)
                             .scaleEffect(0.88)
                             .rotationEffect(.degrees(360/48))
-                        AnimatedDots(delay: 0.5)
+                        AnimatedDots(delay: 0.4)
                             .scaleEffect(0.88 * 0.88)
-                        AnimatedDots(delay: 0.75)
+                        AnimatedDots(delay: 0.6)
                             .scaleEffect(0.88 * 0.88 * 0.88)
                             .rotationEffect(.degrees(360/48))
+                        AnimatedDots(delay: 0.8)
+                            .scaleEffect(0.88 * 0.88 * 0.88 * 0.88)
+                        AnimatedDots(delay: 1)
+                            .scaleEffect(0.88 * 0.88 * 0.88 * 0.88 * 0.88)
+                            .rotationEffect(.degrees(360/48))
+                        AnimatedDots(delay: 1.2)
+                            .scaleEffect(0.88 * 0.88 * 0.88 * 0.88 * 0.88 * 0.88)
+                        AnimatedDots(delay: 1.4)
+                            .scaleEffect(0.88 * 0.88 * 0.88 * 0.88 * 0.88 * 0.88 * 0.88)
+                            .rotationEffect(.degrees(360/48))
+                        AnimatedDots(delay: 1.6)
+                            .scaleEffect(0.88 * 0.88 * 0.88 * 0.88 * 0.88 * 0.88 * 0.88 * 0.88)
                     }
                 }
         }
@@ -43,7 +55,7 @@ struct ContentView: View {
         Image(systemName: "applelogo")
             .foregroundColor(.black)
             .font(Font.system(size: 90))
-            .offset(y: -9)
+            .offset(y: -5)
     }
 }
 
@@ -52,7 +64,7 @@ struct AnimatedDots: View {
 
     @State private var animating = false
     @State private var rotation = 0.0
-    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 2.25, on: .main, in: .common).autoconnect()
     
     var body: some View {
         dots
@@ -72,15 +84,15 @@ struct AnimatedDots: View {
     }
 
     private func fadeIn() {
-        withAnimation(.easeInOut(duration: 1.8).delay(delay)) {
-            rotation += 60
+        withAnimation(.spring(response: 0.9, dampingFraction: 0.4, blendDuration: 1.8).delay(delay/2.0)) {
+//            rotation += 360/24
             animating = true
         }
     }
 
     private func fadeOut() {
-        withAnimation(.easeInOut(duration: 1.8).delay(1 - delay)) {
-            rotation += 60
+        withAnimation(.easeIn(duration: 0.4).delay(2 - delay/10.0)) {
+//            rotation += 360/24
             animating = false
         }
     }
